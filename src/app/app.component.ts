@@ -9,7 +9,8 @@ export class AppComponent {
     { title: 'Mes contacts', url: '/liste-contacts'},
     { title: 'Recommendations', url: '/liste-contacts'},
     { title: 'Profil', url: '/profile'},
-    { title: 'Déconnexion', url: '/authentification'}
+    { title: 'Déconnexion', url: '/authentification'},
+    { title: 'Inscription', url: '/inscription'},
   ];
   constructor() {}
 }

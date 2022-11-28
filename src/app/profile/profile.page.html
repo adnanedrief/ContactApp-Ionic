@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-img [src]="image"></ion-img>
+  </ion-item>
+  <ion-item>
+    <ion-label>Nom</ion-label>
+    <ion-input type="text" value="le nom" disabled="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Prenom</ion-label>
+    <ion-input type="text" value="le prénom" disabled="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="email" value="l'email" disabled="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tel</ion-label>
+    <ion-input type="Tel" value="06xxxxxxxx" disabled="true"></ion-input>
+  </ion-item>
+  <ion-button expand="block" fill="outline">Modifier</ion-button>
 </ion-content>
