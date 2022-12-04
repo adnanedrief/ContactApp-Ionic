@@ -9,7 +9,7 @@ import { ContactAccessService } from '../services/contact-acess.service';
 })
 export class ProfilePage implements OnInit {
   image: string;
-  compte: Compte;
+  compte: any = {};
   constructor(private contactservice: ContactAccessService) { }
 
   ngOnInit() {
