@@ -25,7 +25,7 @@
                 "output": "assets"
               },
               {
-                "glob": "**/*.svg",
+                "glob": "**/",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
               }
@@ -100,7 +100,7 @@
             "scripts": [],
             "assets": [
               {
-                "glob": "favicon.ico",
+                "glob": "",
                 "input": "src/",
                 "output": "/"
               },
@@ -121,10 +121,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         },
         "e2e": {
@@ -146,9 +143,7 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@ionic/angular-toolkit"
-    ]
+    "schematicCollections": ["@ionic/angular-toolkit"]
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

@@ -1,13 +1,12 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: '92ce5acb9b500f6799732469d22c17202870e4ad',
-    authDomain: 'https://www.googleapis.com/oauth2/v1/certs',
-    databaseURL: 'https://ionic-app.firebaseio.com',
+    apiKey: 'AIzaSyBrLQ2FXdKFCg2XEKbnWtahNHL9hIWnH3M',
+    authDomain: 'ionic-app-6c149.firebaseapp.com',
     projectId: 'ionic-app-6c149',
-    storageBucket: '<your-storage-bucket>',
-    messagingSenderId: '<your-sender- id > ',
-    appId: '<your-app-id>',
-    measurementId: '<your-measurement-id>'
+    storageBucket: 'ionic-app-6c149.appspot.com',
+    messagingSenderId: '1001389319408',
+    appId: '1:1001389319408:web:13f625dc60a8530c028e35',
+    measurementId: 'G-SQGXHTMLF6'
   }
 };
