@@ -14,7 +14,8 @@ import { InscriptionPage } from './inscription.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    InscriptionPageRoutingModule
+    InscriptionPageRoutingModule,
+    FormsModule,ReactiveFormsModule
   ],
   declarations: [InscriptionPage]
 })

@@ -6,13 +6,13 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class ContactAuthService {
   constructor(private fireauth: AngularFireAuth) { }
-  singUp(value)
+singUp(value)
 {
 return new Promise<any>((resolve, reject) => {
 this.fireauth.createUserWithEmailAndPassword(value.email,value.password)
 .then(res => resolve(res),err => reject(err));});
 }
-  singIn(value) {
+singIn(value) {
 return new Promise<any>((resolve, reject) => {
       this.fireauth.signInWithEmailAndPassword(value.email, value.password)
       .then(
@@ -20,7 +20,16 @@ return new Promise<any>((resolve, reject) => {
       err => reject(err));
   });
 }
-  signOut() { }
+  singOut() {
+    return new Promise((resolve, reject) => {
+      if (this.fireauth.currentUser) {
+        this.fireauth.signOut()
+          .then(
+            res => resolve(res),
+            err => reject(err));
+      }
+    });
+    }
   userDetails() {
     return this.fireauth.user;
   }

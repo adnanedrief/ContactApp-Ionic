@@ -12,7 +12,8 @@ import { AuthentificationPage } from './authentification.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AuthentificationPageRoutingModule
+    AuthentificationPageRoutingModule,
+    FormsModule,ReactiveFormsModule
   ],
   declarations: [AuthentificationPage]
 })

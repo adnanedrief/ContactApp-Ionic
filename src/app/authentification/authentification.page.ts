@@ -21,7 +21,7 @@ export class AuthentificationPage implements OnInit {
       password: [''],
     });
   }
-  signIn() {
+  singIn() {
     this.fireauth.singIn(this.authForm.value).then(res => {
         console.log(res);
         this.navCtrl.navigateForward('/liste-contacts');
@@ -29,7 +29,7 @@ export class AuthentificationPage implements OnInit {
         console.log(err);
     });
   }
-  signUp() {
+  singUp() {
     this.navCtrl.navigateForward('/inscription');
   }
 }

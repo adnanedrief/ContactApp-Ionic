@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { ContactAuthService } from '../services/contact-auth.service';
 
 @Component({
   selector: 'app-deconnexion',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeconnexionPage implements OnInit {
 
-  constructor() { }
+  constructor(private fireauth: ContactAuthService,private navCtrl: NavController) { }
 
   ngOnInit() {
   }
-
+  singOut() {
+    this.fireauth.singOut().then(res => {
+      console.log('deconnexion');
+      this.navCtrl.navigateRoot('/authentification');
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+  }
 }
