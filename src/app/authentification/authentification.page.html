@@ -7,13 +7,16 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <form [formGroup]="authForm" (ngSubmit)="singIn()">
   <ion-item>
     <ion-label>Email</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" fromControlName="email"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label> Password</ion-label>
-    <ion-input type="Password"></ion-input>
+    <ion-input type="Password" fromControlName="password"></ion-input>
+    <ion-button expand="block" fill="outline" type="submit">SingIn</ion-button>
   </ion-item>
-  <ion-button expand="block" fill="outline">Login</ion-button>
+</form>
+<ion-button expand="block" fill="outline" (click)="signUp()">SignUp</ion-button>
 </ion-content>

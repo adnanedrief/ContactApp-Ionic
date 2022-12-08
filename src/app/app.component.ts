@@ -10,7 +10,7 @@ export class AppComponent {
     { title: 'Recommendations', url: '/liste-contacts'},
     { title: 'Profil', url: '/profile'},
     { title: 'Déconnexion', url: '/authentification'},
-    { title: 'Inscription', url: '/inscription'},
+    // { title: 'Inscription', url: '/inscription'},
   ];
   constructor() {}
 }
