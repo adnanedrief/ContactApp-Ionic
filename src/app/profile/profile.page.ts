@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
     });
     console.log(this.contactservice.getCompte(this.email).subscribe(res => {
       this.compte = res as Compte;
-      console.log(res);
+      console.log('compte => ' +res);
     }));
   }
 }
