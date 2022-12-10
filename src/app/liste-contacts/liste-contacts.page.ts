@@ -17,7 +17,6 @@ export class ListeContactsPage implements OnInit {
     private contactservice: ContactAccessService
     ) { this.menuCtrl.enable(true);}
     ngOnInit() {
-      setTimeout(() =>
       this.contactservice.getAllContact().subscribe(data => {
         console.log(data);
          this.contacts = data.map(e => ({
@@ -31,8 +30,7 @@ export class ListeContactsPage implements OnInit {
             photo: e.payload.doc.data()['photo'],
            }));
          console.log(this.contacts);
-       })
-      ,1000);
+       });
      }
   ajouterContact(){
     this.navCtrl.navigateRoot('/ajouter-contact');
