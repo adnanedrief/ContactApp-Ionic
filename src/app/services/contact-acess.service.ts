@@ -31,7 +31,7 @@ export class ContactAccessService {
   }
   // get  all contacts  from contact id(email)
   getAllPersonalContact(id) {
-    return this.firestore.doc('/Contacts/'+id).collection('/Contacts/');
+    return this.firestore.doc('/Comptes/'+id).collection('/Contacts/');
   }
   //add new account
   newCompte(compte: Compte) {
@@ -43,9 +43,11 @@ export class ContactAccessService {
   }
   // add new contact in account identified by email
   newPersonalContact(id, contact) {
-    return this.firestore.doc('/Comptes/'+id).collection('/Contacts/').doc(contact.email).set(contact);
+      this.firestore.doc('/Comptes/'+ id).collection('/Contacts/').doc(contact.email).set(contact);
+      this.firestore.collection('/Contacts/').doc(contact.email).set(contact);
   }
   delateContactPersonel(id1: string, id2: string ){
-    return this.firestore.doc('/Comptes/'+id1).collection('/Contacts').doc(id2).delete();
+     this.firestore.doc('/Comptes/'+id1).collection('/Contacts').doc(id2).delete();
+     this.firestore.collection('/Contacts/').doc(id2).delete();
   }
 }

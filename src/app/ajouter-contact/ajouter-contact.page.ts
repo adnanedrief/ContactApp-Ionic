@@ -24,7 +24,8 @@ export class AjouterContactPage implements OnInit {
     ville: [''],
     adresse: [''],
     service: [''],
-    photo: ['shorturl.at/bGQR1'],
+    // eslint-disable-next-line max-len
+    photo: ['https://media.gettyimages.com/id/1357769664/video/national-flag-of-morocco-animation-stock-video-moroccan-flag-waving-in-loop-and-textured-3d.jpg?s=640x640&k=20&c=gGuWeJ2lgPnstSXEBJB42VhDAO7C9rbRitQUeSPVbDU='],
   });
 }
 
