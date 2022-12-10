@@ -19,16 +19,19 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.fireauth.userDetails().subscribe(res => {
-      console.log('res', res);
+      console.log('userDetails ==>', res);
       if (res !== null) {
         this.email = res.email;
+        console.log('email ==>'+this.email);
       } else { this.navCtrl.navigateForward('/authentification'); }
     }, err => {
       console.log('err',err);
     });
-    console.log(this.contactservice.getCompte(this.email).subscribe(res => {
-      this.compte = res as Compte;
-      console.log('compte => ' +res);
-    }));
+    setTimeout(() => {
+      console.log(this.contactservice.getCompte(this.email).subscribe(res => {
+        this.compte = res as Compte;
+        console.log('compte => ' +res);
+      }));
+    }, 800);
   }
 }
