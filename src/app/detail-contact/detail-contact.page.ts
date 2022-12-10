@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -66,11 +67,12 @@ export class DetailContactPage implements OnInit {
       console.log('err', err);
     });
   }
-supprimer() {
+Supprimer() {
     this.fireauth.userDetails().subscribe(res => {
       console.log('res', res);
       if (res !== null) {
         this.contactservice.delateContactPersonel(res.email, this.contact.email);
+        console.log('supprimé avec succéss');
         this.navCtrl.navigateForward('/liste-contacts');
       } else {
         this.navCtrl.navigateForward('/authentification');
@@ -79,7 +81,8 @@ supprimer() {
       console.log('err', err);
     });
   }
-  partager() {
+  Modifier(){}
+  Partager() {
     this.fireauth.userDetails().subscribe(res => {
       console.log('res', res);
       if (res !== null) {

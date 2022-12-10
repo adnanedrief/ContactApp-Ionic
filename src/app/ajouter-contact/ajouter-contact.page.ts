@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { ContactAccessService } from '../services/contact-acess.service';
 import { ContactAuthService } from '../services/contact-auth.service';
@@ -13,13 +13,14 @@ export class AjouterContactPage implements OnInit {
   private ajouterContactForm: FormGroup;
   constructor( private navCtrl: NavController,
     private fireauth: ContactAuthService
-    , private firestore: ContactAccessService) { }
+    , private firestore: ContactAccessService,
+) { }
 
   ngOnInit() {
   }
   nouveauContact() {
     this.fireauth.userDetails().subscribe(res => {
-      console.log('res', res);
+      console.log('nouveauContact-res', res);
       if (res !== null) {
         this.firestore.newPersonalContact(res.email, this.ajouterContactForm.value);
         this.navCtrl.navigateForward('/liste-contacts');
