@@ -81,7 +81,7 @@ Supprimer() {
       console.log('err', err);
     });
   }
-  Modifier(){}
+  Modifier(){ this.navCtrl.navigateForward('/modifier-contact');}
   Partager() {
     this.fireauth.userDetails().subscribe(res => {
       console.log('res', res);
