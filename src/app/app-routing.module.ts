@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'list-contacts-recommandes',
     loadChildren: () => import('./list-contacts-recommandes/list-contacts-recommandes.module').then(m=>m.ListContactsRecommandesPageModule)
   },
+  {
+    path: 'ajouter-contact',
+    loadChildren: () => import('./ajouter-contact/ajouter-contact-routing.module').then(m=>m.AjouterContactPageRoutingModule)
+  },
 
 ];
 

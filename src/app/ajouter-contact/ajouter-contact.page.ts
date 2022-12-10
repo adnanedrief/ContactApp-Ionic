@@ -12,9 +12,21 @@ import { ContactAuthService } from '../services/contact-auth.service';
 export class AjouterContactPage implements OnInit {
   private ajouterContactForm: FormGroup;
   constructor( private navCtrl: NavController,
-    private fireauth: ContactAuthService
+    private fireauth: ContactAuthService,
+    private fromBuilder: FormBuilder
     , private firestore: ContactAccessService,
-) { }
+) {
+  this.ajouterContactForm = this.fromBuilder.group({
+    prenom: [''],
+    nom: [''],
+    email: [''],
+    tel: [''],
+    ville: [''],
+    adresse: [''],
+    service: [''],
+    photo: ['shorturl.at/bGQR1'],
+  });
+}
 
   ngOnInit() {
   }
