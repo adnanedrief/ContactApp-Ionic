@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public appPages = [
     { title: 'Mes contacts', url: '/liste-contacts'},
-    { title: 'Recommendations', url: '/liste-contacts'},
+    { title: 'Recommendations', url: '/list-contacts-recommandes'},
     { title: 'Profil', url: '/profile'},
     { title: 'Déconnexion', url: '/deconnexion'},
     // { title: 'Inscription', url: '/inscription'},

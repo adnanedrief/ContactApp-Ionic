@@ -35,6 +35,11 @@ const routes: Routes = [
     path: 'inscription',
     loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule)
   },
+  {
+    path: 'list-contacts-recommandes',
+    loadChildren: () => import('./list-contacts-recommandes/list-contacts-recommandes.module').then(m=>m.ListContactsRecommandesPageModule)
+  },
+
 ];
 
 @NgModule({
