@@ -24,14 +24,14 @@ export class DetailContactPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.emailContact = params.emailContact;
       this.from = params.from;
-      if (this.from === 'liste-contacts-rec')
+      if (this.from === 'list-contacts-recommandes')
         {this.isButtonsVisible = false;}
       else
         {this.isButtonsVisible = true;}
     });
   }
   ngOnInit() {
-    if (this.from === 'liste-contacts-rec')
+    if (this.from === 'list-contacts-recommandes')
       {this.recommande();}
     else
       {this.personel();}
@@ -84,7 +84,7 @@ supprimer() {
       console.log('res', res);
       if (res !== null) {
         this.firestore.newContact(this.contact);
-        this.navCtrl.navigateForward('/liste-contacts-rec');
+        this.navCtrl.navigateForward('/list-contacts-recommandes');
       } else {
         this.navCtrl.navigateForward('/authentification');
       }
