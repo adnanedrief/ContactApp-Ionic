@@ -25,6 +25,7 @@ export class ProfilePage implements OnInit {
       this.editProfileForm = this.formBuilder.group({
         nom: [''],
         prenom: [''],
+        password: [''],
         email: [''],
         tel: [''],
       });
@@ -59,6 +60,8 @@ export class ProfilePage implements OnInit {
       email: this.editProfileForm.get('email')?.value,
       tel: this.editProfileForm.get('tel')?.value,
     };
+    console.log('this.profileInfo => '+this.profileInfo);
     this.contactservice.updateProfile(this.email,this.profileInfo);
+    this.navCtrl.navigateForward('/profile');
   }
 }

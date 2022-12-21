@@ -8,7 +8,7 @@
 </ion-header>
 <ion-content>
   <!-- ----------------------------------------------------------------------- -->
-<form class="ion-padding" [formGroup]="editProfileForm"*ngIf="compte" (ngSubmit)="updateProfile()">
+<form class="ion-padding" [formGroup]="editProfileForm" *ngIf="compte" (ngSubmit)="updateProfile()">
   <ion-item>
     <ion-img [src]="image"></ion-img>
   </ion-item>
@@ -18,15 +18,15 @@
   </ion-item>
   <ion-item>
     <ion-label>Prenom</ion-label>
-    <ion-input type="text" value={{compte.prenom}} formControlName="prenom" name="compte.prenom" disabled="{{modified}}" ></ion-input>
+    <ion-input type="text" value={{compte.prenom}} formControlName="prenom"  [(ngModel)]="compte.prenom" name="prenom" disabled="{{modified}}" ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Email</ion-label>
-    <ion-input type="email" value={{compte.email}} formControlName="email" name="compte.email" disabled="true" ></ion-input>
+    <ion-input type="email" value={{compte.email}} formControlName="email"  [(ngModel)]="compte.email" name="email" disabled="true" ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Tel</ion-label>
-    <ion-input type="Tel" value={{compte.tel}} formControlName="tel" name="compte.tel" disabled="{{modified}}" ></ion-input>
+    <ion-input type="Tel" value={{compte.tel}} formControlName="tel"  [(ngModel)]="compte.tel" name="tel" disabled="{{modified}}" ></ion-input>
   </ion-item>
   <ion-button style="--background:#95cc61" expand="block" fill="solid" *ngIf="!this.modified" type="ngSubmit"> Enregistrer</ion-button>
   <ion-button style="--background:#6666ff" expand="block" fill="solid" (click)="modifier()">Modifier</ion-button>
