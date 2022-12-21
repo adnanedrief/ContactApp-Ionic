@@ -25,7 +25,7 @@ export class AjouterContactPage implements OnInit {
     adresse: [''],
     service: [''],
     // eslint-disable-next-line max-len
-    photo: ['https://media.gettyimages.com/id/1357769664/video/national-flag-of-morocco-animation-stock-video-moroccan-flag-waving-in-loop-and-textured-3d.jpg?s=640x640&k=20&c=gGuWeJ2lgPnstSXEBJB42VhDAO7C9rbRitQUeSPVbDU='],
+    photo: ['https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/langfr-225px-Flag_of_Morocco.svg.png'],
   });
 }
 
