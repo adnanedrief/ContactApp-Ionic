@@ -11,13 +11,15 @@ import { ContactAuthService } from '../services/contact-auth.service';
 })
 export class ProfilePage implements OnInit {
   image: string;
-  compte: any = {};
+  compte: Compte;
   email: string;
+  modified: boolean;
   constructor(private contactservice: ContactAccessService,
     private fireauth: ContactAuthService,
     private navCtrl: NavController) { }
 
   ngOnInit() {
+    this.modified = true;
     this.fireauth.userDetails().subscribe(res => {
       console.log('userDetails ==>', res);
       if (res !== null) {
@@ -33,5 +35,25 @@ export class ProfilePage implements OnInit {
         console.log('compte => ' +res);
       }));
     }, 800);
+  }
+  modifier(){
+    this.modified = false;
+  }
+  updateProfile(){
+    // this.fireauth.userDetails().subscribe(res => {
+    //   console.log('res', res);
+    //   if (res !== null) {
+    //     console.log('this.compte ==> '+this.compte.nom);
+    //     // eslint-disable-next-line @typescript-eslint/no-shadow
+    //     this.contactservice.updateProfile(res.email, this.compte);
+
+    //     this.navCtrl.navigateForward('/profile');
+    //   } else {
+    //     this.navCtrl.navigateForward('/authentification');
+    //   }
+    // }, err => {
+    //   console.log('err', err);
+    // });
+    // console.log(this.compte);
   }
 }

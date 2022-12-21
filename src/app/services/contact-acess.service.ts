@@ -55,4 +55,9 @@ export class ContactAccessService {
     this.firestore.doc('/Comptes/'+id1).collection('/Contacts').doc(id2).delete();
     return this.firestore.doc('/Comptes/'+id1).collection('/Contacts').doc(contact.email).set(contact);
   }
+  updateProfile(id: string , compte: Compte) {
+    // this.firestore.doc('/Comptes/'+id).valueChanges();
+    this.firestore.doc('/Comptes/'+id).delete();
+    return this.firestore.collection('/Comptes').doc(id).set(compte);
+  }
 }

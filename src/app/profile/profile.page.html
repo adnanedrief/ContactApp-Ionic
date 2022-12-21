@@ -6,26 +6,29 @@
     <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content class="ion-padding" *ngIf="compte">
+<ion-content *ngIf="compte">
+  <!-- ----------------------------------------------------------------------- -->
+<form class="ion-padding"  [formGroup]="updateProfileFrom" (ngSubmit)="updateProfile()">
   <ion-item>
     <ion-img [src]="image"></ion-img>
   </ion-item>
   <ion-item>
     <ion-label>Nom</ion-label>
-    <ion-input type="text" value={{compte.nom}} disabled="true"></ion-input>
+    <ion-input type="text" value={{compte.nom}} [(ngModel)]="compte.nom" formControlName="nom" disabled="{{modified}}" ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Prenom</ion-label>
-    <ion-input type="text" value={{compte.prenom}} disabled="true"></ion-input>
+    <ion-input type="text" value={{compte.prenom}} formControlName="compte.prenom" disabled="{{modified}}" ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Email</ion-label>
-    <ion-input type="email" value={{compte.email}} disabled="true"></ion-input>
+    <ion-input type="email" value={{compte.email}} formControlName="compte.email" disabled="true" ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Tel</ion-label>
-    <ion-input type="Tel" value={{compte.tel}} disabled="true"></ion-input>
+    <ion-input type="Tel" value={{compte.tel}} formControlName="compte.tel" disabled="{{modified}}" ></ion-input>
   </ion-item>
-  <ion-button expand="block" fill="outline">Modifier</ion-button>
+  <ion-button style="--background:#95cc61" expand="block" fill="solid" *ngIf="!this.modified" type="ngSubmit"> Enregistrer</ion-button>
+  <ion-button style="--background:#6666ff" expand="block" fill="solid" (click)="modifier()">Modifier</ion-button>
+</form>
 </ion-content>
