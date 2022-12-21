@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { Compte } from '../models/Compte';
 import { ContactAccessService } from '../services/contact-acess.service';
 import { ContactAuthService } from '../services/contact-auth.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +15,20 @@ export class ProfilePage implements OnInit {
   compte: Compte;
   email: string;
   modified: boolean;
+  editProfileForm: any;
+  profileInfo: Compte ;
   constructor(private contactservice: ContactAccessService,
     private fireauth: ContactAuthService,
-    private navCtrl: NavController) { }
+    private navCtrl: NavController,
+    private formBuilder: FormBuilder,
+    ) {
+      this.editProfileForm = this.formBuilder.group({
+        nom: [''],
+        prenom: [''],
+        email: [''],
+        tel: [''],
+      });
+    }
 
   ngOnInit() {
     this.modified = true;
@@ -40,20 +52,13 @@ export class ProfilePage implements OnInit {
     this.modified = false;
   }
   updateProfile(){
-    // this.fireauth.userDetails().subscribe(res => {
-    //   console.log('res', res);
-    //   if (res !== null) {
-    //     console.log('this.compte ==> '+this.compte.nom);
-    //     // eslint-disable-next-line @typescript-eslint/no-shadow
-    //     this.contactservice.updateProfile(res.email, this.compte);
-
-    //     this.navCtrl.navigateForward('/profile');
-    //   } else {
-    //     this.navCtrl.navigateForward('/authentification');
-    //   }
-    // }, err => {
-    //   console.log('err', err);
-    // });
-    // console.log(this.compte);
+     this.profileInfo = {
+      nom: this.editProfileForm.get('nom')?.value,
+      password: '123456',
+      prenom: this.editProfileForm.get('prenom')?.value,
+      email: this.editProfileForm.get('email')?.value,
+      tel: this.editProfileForm.get('tel')?.value,
+    };
+    this.contactservice.updateProfile(this.email,this.profileInfo);
   }
 }

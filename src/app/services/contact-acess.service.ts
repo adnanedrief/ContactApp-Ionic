@@ -57,7 +57,7 @@ export class ContactAccessService {
   }
   updateProfile(id: string , compte: Compte) {
     // this.firestore.doc('/Comptes/'+id).valueChanges();
-    this.firestore.doc('/Comptes/'+id).delete();
-    return this.firestore.collection('/Comptes').doc(id).set(compte);
+   // this.firestore.doc('/Comptes/'+id).delete();
+    return this.firestore.collection('/Comptes').doc(id).update(compte);
   }
 }
