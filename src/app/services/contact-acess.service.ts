@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Compte } from '../models/Compte';
+import { Contact } from '../models/Contact';
 @Injectable({
   providedIn: 'root'
 })
@@ -49,5 +50,9 @@ export class ContactAccessService {
   delateContactPersonel(id1: string, id2: string ){
      this.firestore.doc('/Comptes/'+id1).collection('/Contacts').doc(id2).delete();
      this.firestore.collection('/Contacts/').doc(id2).delete();
+  }
+  setPersonalContact(id1: string, id2: string, contact: Contact) {
+    this.firestore.doc('/Comptes/'+id1).collection('/Contacts').doc(id2).delete();
+    return this.firestore.doc('/Comptes/'+id1).collection('/Contacts').doc(contact.email).set(contact);
   }
 }
