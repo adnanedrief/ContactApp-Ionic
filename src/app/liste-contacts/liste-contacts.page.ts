@@ -14,6 +14,8 @@ import { ContactAuthService } from '../services/contact-auth.service';
 export class ListeContactsPage implements OnInit {
   private contacts: Contact[];
   private email: string;
+  private contactSearchResult: Contact[];
+
   constructor(private menuCtrl: MenuController,
     private navCtrl: NavController,
     private firestore: ContactAccessService,
@@ -52,5 +54,28 @@ export class ListeContactsPage implements OnInit {
       }
     };
     this.navCtrl.navigateForward('/detail-contact', navigationExtras);
+  }
+  searchContact(ev: any){
+    const val = ev.target.value;
+    if(val && val.trim() !== ''){
+      this.contactSearchResult = this.contacts.filter((item)=>(item.nom.toLowerCase().indexOf(val.toLowerCase())>-1));
+
+      this.contacts = this.contactSearchResult;
+    }else{
+      this.firestore.getAllPersonalContact(this?.email).subscribe(data => {
+        this.contacts = data.map(e => ({
+          nom: e.payload.doc.data()['nom'],
+          prenom: e.payload.doc.data()['prenom'],
+          tel: e.payload.doc.data()['tel'],
+          service: e.payload.doc.data()['service'],
+          adresse: e.payload.doc.data()['adresse'],
+          ville: e.payload.doc.data()['city'],
+          email: e.payload.doc.data()['email'],
+          photo: e.payload.doc.data()['photo'],
+        }));
+      });
+    }
+
+
   }
 }
