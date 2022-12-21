@@ -17,6 +17,7 @@ export class ProfilePage implements OnInit {
   modified: boolean;
   editProfileForm: any;
   profileInfo: Compte ;
+  currentPassword: any;
   constructor(private contactservice: ContactAccessService,
     private fireauth: ContactAuthService,
     private navCtrl: NavController,
@@ -25,12 +26,10 @@ export class ProfilePage implements OnInit {
       this.editProfileForm = this.formBuilder.group({
         nom: [''],
         prenom: [''],
-        password: [''],
         email: [''],
         tel: [''],
       });
     }
-
   ngOnInit() {
     this.modified = true;
     this.fireauth.userDetails().subscribe(res => {
@@ -45,6 +44,7 @@ export class ProfilePage implements OnInit {
     setTimeout(() => {
       console.log(this.contactservice.getCompte(this.email).subscribe(res => {
         this.compte = res as Compte;
+        this.currentPassword = this.compte.password;
         console.log('compte => ' +res);
       }));
     }, 800);
@@ -55,7 +55,7 @@ export class ProfilePage implements OnInit {
   updateProfile(){
      this.profileInfo = {
       nom: this.editProfileForm.get('nom')?.value,
-      password: '123456',
+      password: this.currentPassword,
       prenom: this.editProfileForm.get('prenom')?.value,
       email: this.editProfileForm.get('email')?.value,
       tel: this.editProfileForm.get('tel')?.value,
