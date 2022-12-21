@@ -52,6 +52,9 @@ export class ProfilePage implements OnInit {
   modifier(){
     this.modified = false;
   }
+  cancel(){
+    this.modified = true;
+  }
   updateProfile(){
      this.profileInfo = {
       nom: this.editProfileForm.get('nom')?.value,

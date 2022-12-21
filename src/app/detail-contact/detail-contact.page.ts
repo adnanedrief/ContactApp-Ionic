@@ -72,6 +72,9 @@ export class DetailContactPage implements OnInit {
       console.log('err', err);
     });
   }
+  cancel(){
+    this.modified = true;
+  }
   recommande() {
     this.fireauth.userDetails().subscribe(res => {
       console.log('res', res);

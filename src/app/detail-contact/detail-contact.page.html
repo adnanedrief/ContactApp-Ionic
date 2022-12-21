@@ -61,8 +61,9 @@
   <div class="yourCssClass" *ngIf="this.isButtonsVisible">
     <ion-button style="--background:#95cc61" expand="block" fill="solid"  *ngIf="!this.modified" type="ngSubmit">Enregistrer</ion-button>
     <ion-button style="--background:#E0CD66" expand="block" fill="solid" (click)="Modifier()">Modifier</ion-button>
-    <ion-button style="--background:#e54646" expand="block" fill="solid" (click)="Supprimer()">Supprimer</ion-button>
+    <ion-button style="--background:#be60e6" expand="block" fill="solid" (click)="cancel()">Annuler</ion-button>
     <ion-button style="--background:#6666ff" expand="block" fill="solid" (click)="Partager()">Partager</ion-button>
+    <ion-button style="--background:#e54646" expand="block" fill="solid" (click)="Supprimer()">Supprimer</ion-button>
   </div>
 </form>
 </ion-content>
