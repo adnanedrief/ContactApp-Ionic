@@ -31,7 +31,7 @@ export class InscriptionPage implements OnInit {
     });
     this.sqlite.create({
       name: 'data1.db',
-      location: './src'
+      location: 'default'
       })
       .then((db: SQLiteObject) => {
       this.db = db;
