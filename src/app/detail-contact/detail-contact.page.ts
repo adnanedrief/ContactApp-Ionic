@@ -90,6 +90,46 @@ export class DetailContactPage implements OnInit {
       console.log('err', err);
     });
   }
+  setSMS() {
+    // send sms in cordova
+    const options = {
+      replaceLineBreaks: false,
+      android: {
+        intent: 'INTENT'
+      }
+    };
+    this.sms.send(this.contact.tel, 'Envoye de sms par l\'application contact',options);
+  }
+  email() {
+    const email = {
+      to: this.contact.email, subject: 'Demmand de service',
+      body: 'Bonjour,\n' +
+        'Je suis du service '+this.contact.service+',\n' +
+        'contacte moi svp' ,
+      isHtml: true
+    };
+    this.emailComposer.open(email);
+  }
+  appel() {
+    this.callNumber.callNumber(this.contact.tel, true)
+      .then(res => console.log('Ouverture de l appel!', res))
+      .catch(err => console.log('Error', err));
+  }
+  localisationAndSendItByWhatsapp() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      const localisationCoordinates =  resp.coords.latitude.toString() + ',' + resp.coords.longitude.toString();
+      //
+      this.socialSharing.shareViaWhatsAppToReceiver(this.contact.tel,
+        'Ma localisation est  \n  ' +  'https://www.google.com/maps/@'+localisationCoordinates, null).then(() => {
+// Success!
+      }).catch(() => {
+// Error!
+      });
+      console.log(this.LocationUrl);
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
 Supprimer() {
     this.fireauth.userDetails().subscribe(res => {
       console.log('res', res);
