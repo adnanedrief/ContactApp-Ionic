@@ -92,20 +92,20 @@ export class DetailContactPage implements OnInit {
   }
   setSMS() {
     // send sms in cordova
+    const mytext = prompt('Ecrivez votre SMS');
     const options = {
       replaceLineBreaks: false,
       android: {
         intent: 'INTENT'
       }
     };
-    this.sms.send(this.contact.tel, 'Envoye de sms par l\'application contact',options);
+    this.sms.send(this.contact.tel, mytext,options);
   }
   email() {
+    const mytext = prompt('Ecrivez votre message');
     const email = {
-      to: this.contact.email, subject: 'Demmand de service',
-      body: 'Bonjour,\n' +
-        'Je suis du service '+this.contact.service+',\n' +
-        'contacte moi svp' ,
+      to: this.contact.email, subject: 'Demmand de service : '+this.contact.service,
+      body: mytext,
       isHtml: true
     };
     this.emailComposer.open(email);
