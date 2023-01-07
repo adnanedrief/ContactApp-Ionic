@@ -7,7 +7,7 @@ describe('AuthentificationPage', () => {
   let component: AuthentificationPage;
   let fixture: ComponentFixture<AuthentificationPage>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(waitForAsync(() => {//kjlkqjdlksdjlksq
     TestBed.configureTestingModule({
       declarations: [ AuthentificationPage ],
       imports: [IonicModule.forRoot()]
