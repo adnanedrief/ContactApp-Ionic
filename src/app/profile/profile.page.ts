@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { Compte } from '../models/Compte';
 import { ContactAccessService } from '../services/contact-acess.service';
 import { ContactAuthService } from '../services/contact-auth.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,13 +12,26 @@ import { ContactAuthService } from '../services/contact-auth.service';
 })
 export class ProfilePage implements OnInit {
   image: string;
-  compte: any = {};
+  compte: Compte;
   email: string;
+  modified: boolean;
+  editProfileForm: any;
+  profileInfo: Compte ;
+  currentPassword: any;
   constructor(private contactservice: ContactAccessService,
     private fireauth: ContactAuthService,
-    private navCtrl: NavController) { }
-
+    private navCtrl: NavController,
+    private formBuilder: FormBuilder,
+    ) {
+      this.editProfileForm = this.formBuilder.group({
+        nom: [''],
+        prenom: [''],
+        email: [''],
+        tel: [''],
+      });
+    }
   ngOnInit() {
+    this.modified = true;
     this.fireauth.userDetails().subscribe(res => {
       console.log('userDetails ==>', res);
       if (res !== null) {
@@ -30,8 +44,27 @@ export class ProfilePage implements OnInit {
     setTimeout(() => {
       console.log(this.contactservice.getCompte(this.email).subscribe(res => {
         this.compte = res as Compte;
+        this.currentPassword = this.compte.password;
         console.log('compte => ' +res);
       }));
     }, 800);
+  }
+  modifier(){
+    this.modified = false;
+  }
+  cancel(){
+    this.modified = true;
+  }
+  updateProfile(){
+     this.profileInfo = {
+      nom: this.editProfileForm.get('nom')?.value,
+      password: this.currentPassword,
+      prenom: this.editProfileForm.get('prenom')?.value,
+      email: this.editProfileForm.get('email')?.value,
+      tel: this.editProfileForm.get('tel')?.value,
+    };
+    console.log('this.profileInfo => '+this.profileInfo);
+    this.contactservice.updateProfile(this.email,this.profileInfo);
+    this.navCtrl.navigateForward('/profile');
   }
 }

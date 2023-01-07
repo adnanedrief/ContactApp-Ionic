@@ -42,12 +42,7 @@ const routes: Routes = [
   {
     path: 'ajouter-contact',
     loadChildren: () => import('./ajouter-contact/ajouter-contact-routing.module').then(m=>m.AjouterContactPageRoutingModule)
-  },  {
-    path: 'modifier-contact',
-    loadChildren: () => import('./modifier-contact/modifier-contact.module').then( m => m.ModifierContactPageModule)
   },
-
-
 ];
 
 @NgModule({

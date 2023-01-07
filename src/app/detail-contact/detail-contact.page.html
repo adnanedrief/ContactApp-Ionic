@@ -5,37 +5,68 @@
 </ion-header>
 
 <ion-content class="ion-padding" *ngIf="contact">
+  <form (ngSubmit)="Save()">
+  <ion-fab slot="fixed" vertical="top" horizontal="center" edge="false"> 
+    <ion-fab-button (click)="ajouterFavori()"  color="danger">
+      <ion-icon name="star-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab slot="fixed" vertical="top" horizontal="end" edge="false">
+    <ion-fab-button  color="success">
+      <ion-icon name="chevron-down-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button (click)="email()">
+        <ion-icon name="mail"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="appel()">
+        <ion-icon name="call"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="setSMS()">
+        <ion-icon name="document"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="localisationAndSendItByWhatsapp()">
+        <ion-icon name="pin"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-item>
+    <ion-img src="{{contact.photo}}"></ion-img>
+  </ion-item>
   <ion-item>
     <ion-label>Nom</ion-label>
-    <ion-input type="text" value={{contact.nom}} disabled="true"></ion-input>
+    <ion-input type="text" value={{contact.nom}} [(ngModel)]="contact.nom" name="nom" disabled="{{modified}}" ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Prenom</ion-label>
-    <ion-input type="text" value={{contact.prenom}} disabled="true"></ion-input>
+    <ion-input type="text" value={{contact.prenom}} [(ngModel)]="contact.prenom" name="prenom" disabled="{{modified}}"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Email</ion-label>
-    <ion-input type="email" value={{contact.email}} disabled="true"></ion-input>
+    <ion-input type="email" value={{contact.email}} [(ngModel)]="contact.email" name="email" disabled="{{modified}}"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Tel</ion-label>
-    <ion-input type="Tel" value={{contact.tel}} disabled="true"></ion-input>
+    <ion-input type="Tel" value={{contact.tel}} [(ngModel)]="contact.tel" name="tel"  disabled="{{modified}}"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Adresse</ion-label>
-    <ion-input type="text" value={{contact.adresse}} disabled="true"></ion-input>
+    <ion-input type="text" value={{contact.adresse}} [(ngModel)]="contact.adresse" name="adresse" disabled="{{modified}}"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Ville</ion-label>
-    <ion-input type="text" value={{contact.ville}} disabled="true"></ion-input>
+    <ion-input type="text" value={{contact.ville}} [(ngModel)]="contact.ville" name="ville" disabled="{{modified}}"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Service</ion-label>
-    <ion-input type="text" value={{contact.service}} disabled="true"></ion-input>
+    <ion-input type="text" value={{contact.service}} [(ngModel)]="contact.service" name="service" disabled="{{modified}}"></ion-input>
   </ion-item>
   <div class="yourCssClass" *ngIf="this.isButtonsVisible">
-    <ion-button expand="block" fill="outline" (click)="Modifier()">Modifier</ion-button>
-    <ion-button expand="block" fill="outline" (click)="Supprimer()">Supprimer</ion-button>
-    <ion-button expand="block" fill="outline" (click)="Partager()">Partager</ion-button>
+    <ion-button style="--background:#95cc61" expand="block" fill="solid"  *ngIf="!this.modified" type="ngSubmit">Enregistrer</ion-button>
+    <ion-button style="--background:#E0CD66" expand="block" fill="solid" (click)="Modifier()">Modifier</ion-button>
+    <ion-button style="--background:#be60e6" expand="block" fill="solid" (click)="cancel()">Annuler</ion-button>
+    <ion-button style="--background:#6666ff" expand="block" fill="solid" (click)="Partager()">Partager</ion-button>
+    <ion-button style="--background:#e54646" expand="block" fill="solid" (click)="Supprimer()">Supprimer</ion-button>
   </div>
+</form>
 </ion-content>

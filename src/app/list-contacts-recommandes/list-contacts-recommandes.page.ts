@@ -35,7 +35,8 @@ export class ListContactsRecommandesPage implements OnInit {
   detailsContact(email) {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        emailContact: email
+        emailContact: email,
+        from :'list-contacts-recommandes'
       }
     };
     this.navCtrl.navigateForward('/detail-contact', navigationExtras);
