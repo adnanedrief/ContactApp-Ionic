@@ -3,12 +3,12 @@
     <ion-title>DetailContact</ion-title>
   </ion-toolbar>
 </ion-header>
-
+  
 <ion-content class="ion-padding" *ngIf="contact">
   <form (ngSubmit)="Save()">
   <ion-fab slot="fixed" vertical="top" horizontal="center" edge="false"> 
     <ion-fab-button (click)="ajouterFavori()"  color="danger">
-      <ion-icon name="star-outline"></ion-icon>
+      <ion-icon  name={{start_icon_type}}></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-fab slot="fixed" vertical="top" horizontal="end" edge="false">

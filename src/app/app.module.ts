@@ -20,6 +20,7 @@ import {EmailComposer} from '@ionic-native/email-composer/ngx';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {SMS} from '@ionic-native/sms/ngx';
 import {SocialSharing} from '@ionic-native/social-sharing/ngx';
+import { SQLite } from '@ionic-native/sqlite/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +38,9 @@ import {SocialSharing} from '@ionic-native/social-sharing/ngx';
     EmailComposer,
     Geolocation,
     SMS,
-    SocialSharing],
+    SocialSharing,
+    SQLite,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
