@@ -67,7 +67,8 @@ export class ProfilePage implements OnInit {
     };
     console.log('this.profileInfo => '+this.profileInfo);
     await this.contactservice.updateProfile(this.email,this.profileInfo);
-    this.navCtrl.navigateForward('/profile');
+    this.modified = true;
+    this.navCtrl.navigateForward('/liste-contacts');
   }
   shareMyProfile() {
       this.socialSharing.shareWithOptions({
