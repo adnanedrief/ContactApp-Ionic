@@ -21,7 +21,7 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {SMS} from '@ionic-native/sms/ngx';
 import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
-
+import { File } from '@ionic-native/file/ngx';
 @NgModule({
   declarations: [AppComponent],
  imports: [
@@ -40,6 +40,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     SMS,
     SocialSharing,
     SQLite,
+    File,
   ],
   bootstrap: [AppComponent],
 })

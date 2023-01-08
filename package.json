@@ -27,6 +27,8 @@
     "@capacitor/status-bar": "4.0.1",
     "@ionic-native/call-number": "^5.36.0",
     "@ionic-native/email-composer": "^5.36.0",
+    "@ionic-native/file": "^5.36.0",
+    "@ionic-native/file-opener": "^5.36.0",
     "@ionic-native/firebase": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
     "@ionic-native/sms": "^5.36.0",
@@ -40,6 +42,7 @@
     "ionicons": "^6.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -61,6 +64,7 @@
     "@typescript-eslint/parser": "5.3.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-email-composer": "^0.10.1",
+    "cordova-plugin-file": "^7.0.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -90,7 +94,10 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-email-composer": {}
+      "cordova-plugin-email-composer": {},
+      "cordova-plugin-file": {
+        "ANDROIDX_WEBKIT_VERSION": "1.4.0"
+      }
     },
     "platforms": [
       "android"

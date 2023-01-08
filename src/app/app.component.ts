@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     { title: 'Recommendations', url: '/list-contacts-recommandes',icon: 'flame' },
     { title: 'Profil', url: '/profile',icon: 'person'},
     { title: 'Favoris', url: '/favoris',icon: 'heart'},
+    { title: 'Sauvgarde', url: '/sauvgarde',icon: 'save'},
     { title: 'Déconnexion', url: '/deconnexion',icon:'exit'},
   ];
   compte: Compte;
