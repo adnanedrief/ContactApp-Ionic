@@ -23,12 +23,12 @@ export class InscriptionPage implements OnInit {
     private navCtrl: NavController,
     private sqlite: SQLite) {
     this.inscriptionForm = this.fromBuilder.group({
-      email: [''],
-      password: [''],
-      tel: [''],
-      nom: [''],
-      prenom: [''],
-      image: [''],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      tel: ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
+      nom: ['', Validators.compose([Validators.required])],
+      prenom: ['', Validators.compose([Validators.required])],
+      image: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9VRLrNCjA2II_UhLbtYqb5T-j5rllCwY9Mg&usqp=CAU'],
     });
     this.sqlite.create({
       name: 'data1.db',

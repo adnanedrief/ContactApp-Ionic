@@ -12,7 +12,6 @@
     <ion-input type="text" [value]="downloadURL | async" hidden  [(ngModel)]="contact.photo" name="photo" disabled="{{true}}" ></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Contact photo</ion-label>
     <input type="file" (change)="uploadFile($event)">
     <div>{{ uploadPercent | async }}</div>
   </ion-item>
