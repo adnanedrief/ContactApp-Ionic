@@ -9,32 +9,41 @@
 <ion-content>
 <form [formGroup]="ajouterContactForm" (ngSubmit)="nouveauContact()">
   <ion-item>
+    <ion-input type="text" [value]="downloadURL | async" hidden  [(ngModel)]="contact.photo" name="photo" disabled="{{true}}" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Contact photo</ion-label>
+    <input type="file" (change)="uploadFile($event)">
+    <div>{{ uploadPercent | async }}</div>
+  </ion-item>
+
+  <ion-item>
     <ion-label>Nom</ion-label>
-    <ion-input type="text" formControlName='nom'></ion-input>
+    <ion-input type="text" formControlName='nom' [(ngModel)]="contact.nom" name="nom"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Prenom</ion-label>
-    <ion-input type="text" formControlName='prenom'></ion-input>
+    <ion-input type="text" formControlName='prenom' [(ngModel)]="contact.prenom" name="prenom"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Email</ion-label>
-    <ion-input type="email" formControlName='email'></ion-input>
+    <ion-input type="email" formControlName='email' [(ngModel)]="contact.email" name="email"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Tel</ion-label>
-    <ion-input type="Tel" formControlName='tel'></ion-input>
+    <ion-input type="Tel" formControlName='tel' [(ngModel)]="contact.tel" name="tel"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Adresse</ion-label>
-    <ion-input type="text" formControlName='adresse'></ion-input>
+    <ion-input type="text" formControlName='adresse' [(ngModel)]="contact.adresse" name="adresse"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Ville</ion-label>
-    <ion-input type="text" formControlName='ville'></ion-input>
+    <ion-input type="text" formControlName='ville' [(ngModel)]="contact.ville" name="ville"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label> Service</ion-label>
-    <ion-select placeholder="Choisir un service" formControlName='service'>
+    <ion-select placeholder="Choisir un service" formControlName='service' [(ngModel)]="contact.service" name="service">
       <ion-select-option value="coiffeur">coiffeur</ion-select-option>
       <ion-select-option value="fleuriste">fleuriste</ion-select-option>
       <ion-select-option value="maçon">maçon</ion-select-option>

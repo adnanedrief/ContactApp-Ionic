@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { ContactAccessService } from '../services/contact-acess.service';
 import { ContactAuthService } from '../services/contact-auth.service';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import {finalize, tap} from 'rxjs/operators';
+import { Contact } from '../models/Contact';
 
 @Component({
   selector: 'app-ajouter-contact',
@@ -10,11 +14,22 @@ import { ContactAuthService } from '../services/contact-auth.service';
   styleUrls: ['./ajouter-contact.page.scss'],
 })
 export class AjouterContactPage implements OnInit {
+  contact: Contact = new Contact('',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '',
+                                '');
   private ajouterContactForm: FormGroup;
+  private uploadPercent: Observable<number>;
+  private downloadURL: Observable<string>;
   constructor( private navCtrl: NavController,
     private fireauth: ContactAuthService,
     private fromBuilder: FormBuilder
     , private firestore: ContactAccessService,
+    private storage: AngularFireStorage
 ) {
   this.ajouterContactForm = this.fromBuilder.group({
     prenom: [''],
@@ -43,5 +58,19 @@ export class AjouterContactPage implements OnInit {
     }, err => {
       console.log('err', err);
     });
+  }
+  uploadFile(event) {
+    const file = event.target.files[0];
+    const filePath = `images/${new Date().getTime()}.png`;
+    const ref = this.storage.ref(filePath);
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = fileRef.getDownloadURL() )
+    )
+    .subscribe();
   }
 }
