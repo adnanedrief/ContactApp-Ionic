@@ -12,11 +12,11 @@ import { Compte } from './models/Compte';
 export class AppComponent implements OnInit {
   public currentUserEmail ='adnane@hamza.com';
   public appPages = [
-    { title: 'Mes contacts', url: '/liste-contacts'},
-    { title: 'Recommendations', url: '/list-contacts-recommandes'},
-    { title: 'Profil', url: '/profile'},
-    { title: 'Favoris', url: '/favoris'},
-    { title: 'Déconnexion', url: '/deconnexion'},
+    { title: 'Mes contacts', url: '/liste-contacts', icon: 'journal'},
+    { title: 'Recommendations', url: '/list-contacts-recommandes',icon: 'flame' },
+    { title: 'Profil', url: '/profile',icon: 'person'},
+    { title: 'Favoris', url: '/favoris',icon: 'heart'},
+    { title: 'Déconnexion', url: '/deconnexion',icon:'exit'},
   ];
   compte: Compte;
   private isDark: string | undefined | null;
