@@ -19,9 +19,10 @@ export class AppComponent implements OnInit {
     // { title: 'Inscription', url: '/inscription'},
   ];
   compte: Compte;
+  private isDark: string | undefined | null;
   constructor(private navCtrl: NavController,
     private contactsetvice: ContactAccessService,
-    private fireAuth: ContactAuthService) {}
+    private fireAuth: ContactAuthService) {this.isDark = localStorage.getItem('isDark');}
   ngOnInit(){
     this.fireAuth.userDetails().subscribe(res => {
       console.log('res', res);
@@ -36,4 +37,25 @@ export class AppComponent implements OnInit {
       }
     });
   }
+  toggleDark(ev: any) {
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    systemDark.addEventListener('change', (e) => {
+      this.colorTest(e);
+    });
+    if (ev.detail.checked) {
+      localStorage.setItem('isDark', 'true');
+      document.body.setAttribute('data-theme', 'dark');
+    } else {
+      localStorage.setItem('isDark', 'false');
+      document.body.setAttribute('data-theme', 'light');
+    }
+  }
+
+  colorTest(systemInitiatedDark: { matches: any }) {
+    if (systemInitiatedDark.matches) {
+      document.body.setAttribute('data-theme', 'dark');
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+    }
+  }
 }
