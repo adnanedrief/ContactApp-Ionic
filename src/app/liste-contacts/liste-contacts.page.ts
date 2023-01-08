@@ -15,12 +15,12 @@ export class ListeContactsPage implements OnInit {
   private contacts: Contact[];
   private email: string;
   private contactSearchResult: Contact[];
-
+  private isDark: string | undefined | null;
   constructor(private menuCtrl: MenuController,
     private navCtrl: NavController,
     private firestore: ContactAccessService,
     private fireAuth: ContactAuthService
-    ) { this.menuCtrl.enable(true);}
+    ) { this.menuCtrl.enable(true); this.isDark = localStorage.getItem('isDark');}
     ngOnInit() {
       this.fireAuth.userDetails().subscribe(res => {
         console.log('res', res);
@@ -75,7 +75,5 @@ export class ListeContactsPage implements OnInit {
         }));
       });
     }
-
-
   }
 }
