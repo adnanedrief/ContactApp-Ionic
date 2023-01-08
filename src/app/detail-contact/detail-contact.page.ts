@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Contact } from '../models/Contact';
 import { ContactAccessService } from '../services/contact-acess.service';
@@ -10,6 +10,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import {SQLite, SQLiteObject} from '@ionic-native/sqlite/ngx';
 
 @Component({
   selector: 'app-detail-contact',
@@ -24,7 +25,10 @@ export class DetailContactPage implements OnInit {
   LocationUrl: string;
   start_icon_type = 'star-outline';
   deletefav = false;
+  db: SQLiteObject;
   private isButtonsVisible = false;
+  private localImage = '../../../../assets/img.png';
+
   constructor(private contactservice: ContactAccessService,
     private fireauth: ContactAuthService,
     private firestore: ContactAccessService,
@@ -35,7 +39,8 @@ export class DetailContactPage implements OnInit {
     private emailComposer: EmailComposer,
     private geolocation: Geolocation,
     private sms: SMS,
-    private socialSharing: SocialSharing) {
+    private socialSharing: SocialSharing,
+    private sqlite: SQLite) {
     this.route.queryParams.subscribe(params => {
       this.emailContact = params.emailContact;
       this.from = params.from;
@@ -92,20 +97,20 @@ export class DetailContactPage implements OnInit {
   }
   setSMS() {
     // send sms in cordova
+    const mytext = prompt('Ecrivez votre SMS');
     const options = {
       replaceLineBreaks: false,
       android: {
         intent: 'INTENT'
       }
     };
-    this.sms.send(this.contact.tel, 'Envoye de sms par l\'application contact',options);
+    this.sms.send(this.contact.tel, mytext,options);
   }
   email() {
+    const mytext = prompt('Ecrivez votre message');
     const email = {
-      to: this.contact.email, subject: 'Demmand de service',
-      body: 'Bonjour,\n' +
-        'Je suis du service '+this.contact.service+',\n' +
-        'contacte moi svp' ,
+      to: this.contact.email, subject: 'Demmand de service : '+this.contact.service,
+      body: mytext,
       isHtml: true
     };
     this.emailComposer.open(email);
@@ -174,4 +179,89 @@ Supprimer() {
     });
     console.log(this.contact);
   }
+  ajouterFavori() {
+    if(this.start_icon_type === 'star'){
+      this.start_icon_type = 'star-outline';
+      this.sqlite.create({
+        name: 'data1.db',
+        location: 'default'
+      })
+        .then((db: SQLiteObject) => {
+          this.db = db;
+          this.db.executeSql('delete from contact1 where tel="'+this.contact.tel+'"',[])
+            .then(() => console.log('Executed SQL delete'))
+            .catch(e => console.log(e));
+        })
+        .catch(e => console.log(e));
+    }else {
+      this.start_icon_type = 'star';
+      this.sqlite.create({
+        name: 'data1.db',
+        location: 'default'
+      })
+        .then((db: SQLiteObject) => {
+          this.db = db;
+          this.db.executeSql('insert into contact1(nom, prenom, tel, email, adresse, ville, service, photo) values("'
+            +this.contact.nom+'","'
+            +this.contact.prenom+'","'
+            +this.contact.tel+'","'
+            +this.contact.email+'","'
+            +this.contact.adresse+'","'
+            +this.contact.ville+'","'
+            +this.contact.service+'","'
+            +this.contact.photo+ '")',[])
+            .then(() => console.log('Executed SQL insert'))
+            .catch(e => console.log(e));
+        })
+        .catch(e => console.log(e));
+    }
+    }
+    getImage(item): string{
+      console.log(this.localImage);
+      return item == null? this.localImage:item;
+    }
+    favori(){
+      this.sqlite.create({
+        name: 'data1.db',
+        location: 'default'
+      })
+        .then((db: SQLiteObject) => {
+          this.db = db;
+          this.db.executeSql('select * from contact1 where email="'+this.emailContact+'"',[])
+          .then((data) => {this.contact = new Contact(
+            data.rows.item(0).nom,
+            data.rows.item(0).prenom,
+            data.rows.item(0).email,
+            data.rows.item(0).tel,
+            data.rows.item(0).ville,
+            data.rows.item(0).adresse,
+            data.rows.item(0).service,
+            data.rows.item(0).photo
+          );})
+            .catch(e => console.log(e));
+        })
+        .catch(e => console.log(e));
+        this.start_icon_type= 'star';
+    }
+    deleteFavorite(){
+      this.sqlite.create({
+        name: 'data1.db',
+        location: 'default'
+      })
+        .then((db: SQLiteObject) => {
+          this.db = db;
+          this.db.executeSql('DELETE from contact1 where tel="'+this.contact.tel+'"',[])
+            .then(() => {console.log('client' + this.contact.tel +'deleted successfuly');})
+            .catch(e => console.log(e));
+        })
+        .catch(e => console.log(e));
+      this.favori();
+      const navigationExtras: NavigationExtras = {
+        queryParams: {
+          from:'details-contact'
+        }
+      };
+      this.navCtrl.navigateForward('/favorite', navigationExtras);
+    }
+
 }

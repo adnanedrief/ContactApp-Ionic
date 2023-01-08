@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'ajouter-contact',
     loadChildren: () => import('./ajouter-contact/ajouter-contact-routing.module').then(m=>m.AjouterContactPageRoutingModule)
+  },  {
+    path: 'favoris',
+    loadChildren: () => import('./favoris/favoris.module').then( m => m.FavorisPageModule)
   },
+
 ];
 
 @NgModule({

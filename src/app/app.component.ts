@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
     { title: 'Mes contacts', url: '/liste-contacts'},
     { title: 'Recommendations', url: '/list-contacts-recommandes'},
     { title: 'Profil', url: '/profile'},
+    { title: 'Favoris', url: '/favoris'},
     { title: 'Déconnexion', url: '/deconnexion'},
-    // { title: 'Inscription', url: '/inscription'},
   ];
   compte: Compte;
   private isDark: string | undefined | null;
