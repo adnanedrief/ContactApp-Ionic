@@ -28,6 +28,7 @@ export class InscriptionPage implements OnInit {
       tel: [''],
       nom: [''],
       prenom: [''],
+      image: [''],
     });
     this.sqlite.create({
       name: 'data1.db',

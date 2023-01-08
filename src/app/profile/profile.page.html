@@ -9,7 +9,7 @@
 <ion-content>
 <form class="ion-padding" [formGroup]="editProfileForm" *ngIf="compte" (ngSubmit)="updateProfile()">
   <ion-item>
-    <ion-img [src]="image"></ion-img>
+    <ion-img [src]="compte.image"></ion-img>
   </ion-item>
   <ion-item>
     <ion-label>Nom</ion-label>

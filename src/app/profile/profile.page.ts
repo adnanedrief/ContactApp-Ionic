@@ -57,7 +57,7 @@ export class ProfilePage implements OnInit {
   cancel(){
     this.modified = true;
   }
-  updateProfile(){
+  async updateProfile(){
      this.profileInfo = {
       nom: this.editProfileForm.get('nom')?.value,
       password: this.currentPassword,
@@ -66,7 +66,7 @@ export class ProfilePage implements OnInit {
       tel: this.editProfileForm.get('tel')?.value,
     };
     console.log('this.profileInfo => '+this.profileInfo);
-    this.contactservice.updateProfile(this.email,this.profileInfo);
+    await this.contactservice.updateProfile(this.email,this.profileInfo);
     this.navCtrl.navigateForward('/profile');
   }
   shareMyProfile() {
