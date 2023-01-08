@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     this.fireAuth.userDetails().subscribe(res => {
       console.log('res', res);
       if(res !== null){
-        this.currentUserEmail = res.email;
+        this.currentUserEmail = res.email;//email
         this.contactsetvice.getCompte(this.currentUserEmail).subscribe(compte => {
           console.log('Get compte for user ', res);
           this.compte = compte as Compte;
