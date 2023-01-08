@@ -4,6 +4,7 @@ import { Compte } from '../models/Compte';
 import { ContactAccessService } from '../services/contact-acess.service';
 import { ContactAuthService } from '../services/contact-auth.service';
 import { FormBuilder } from '@angular/forms';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +23,7 @@ export class ProfilePage implements OnInit {
     private fireauth: ContactAuthService,
     private navCtrl: NavController,
     private formBuilder: FormBuilder,
+    private socialSharing: SocialSharing
     ) {
       this.editProfileForm = this.formBuilder.group({
         nom: [''],
@@ -66,5 +68,17 @@ export class ProfilePage implements OnInit {
     console.log('this.profileInfo => '+this.profileInfo);
     this.contactservice.updateProfile(this.email,this.profileInfo);
     this.navCtrl.navigateForward('/profile');
+  }
+  shareMyProfile() {
+      this.socialSharing.shareWithOptions({
+        message: 'Bonjour , \n je suis '+this.compte.nom+' '+this.compte.prenom+' \n et voici mon téléphone '
+        +this.compte.tel+' et mon email '+this.compte.email
+        + '\nCordialement',
+        chooserTitle: 'Mon contact '
+      }).then((res) => {
+        console.log('res => '+res);
+      }).catch((e) => {
+        console.log('e => '+e);
+      });
   }
 }
